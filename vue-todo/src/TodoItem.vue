@@ -68,6 +68,17 @@ export default {
         font-size: 16px;
         float: right;
     }
+
+    .button:hover {
+        background-color: #029ccf;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+    .button:active {
+        background-color: #00688a;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
 </style>
 
 <template>
