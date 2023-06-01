@@ -26,11 +26,15 @@ export default {
 
 <style>
     .todo {
-        background-color: white;
+        background-color: #f7f9fa;
         color: black;
         border-radius: 25px;
-        border: 2px solid black;
+        border: 2px solid #526d7a;
         width: 500px;
+    }
+
+    .todo:hover {
+        border: 2px solid #8ab9cf;
     }
 
     .grid-container {
@@ -52,7 +56,6 @@ export default {
     }
     
     .done {
-        background-color: white;
         color: grey;
         text-decoration: line-through;
     }

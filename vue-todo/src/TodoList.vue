@@ -13,7 +13,6 @@ export default {
 
 <template>
     <div class='list'>
-        <h2>Todos:</h2>
         <TodoItem />
     </div>
 </template>
