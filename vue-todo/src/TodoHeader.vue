@@ -1,11 +1,11 @@
 <script>
-export default {
-    data() {
-        return {
-            text: 'Todo-app'
+    export default {
+        data() {
+            return {
+                text: 'Todo-app'
+            }
         }
     }
-}
 </script>
 
 <template>

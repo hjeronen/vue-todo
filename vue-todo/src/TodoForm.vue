@@ -1,40 +1,20 @@
 <script>
-    let todo = {
-        text: 'Create a Todo-app.',
-        done: false
-    }
-
-    let button = {
-        text: 'Done'
-    }
+    let todo = ''
 
     export default {
         data() {
             return {
-                todo: todo,
-                button: button
-            }
-        },
-        methods: {
-            toggle() {
-                this.todo.done = !todo.done
-                this.button.text = todo.done ? 'Undone' : 'Done'
+                todo: todo
             }
         }
     }
 </script>
 
-<style>
-    .todo {
-        background-color: #f7f9fa;
-        color: black;
-        border-radius: 25px;
-        border: 2px solid #526d7a;
-        width: 90%;
-    }
+<style scoped>
 
-    .todo:hover {
-        border: 2px solid #8ab9cf;
+    .form {
+        font-family: Arial, Helvetica, sans-serif;
+        width: 600px;
     }
 
     .grid-container {
@@ -49,15 +29,31 @@
         grid-column: 1/2;
         padding: 10px;
         justify-content: left;
+        width: 120%
+    }
+
+    .text-item.input {
+        border-radius: 15px;
+        border: 2px solid #526d7a;
+        padding: 15px;
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .text-item.input:hover {
+        border: 2px solid #8ab9cf;
+    }
+
+    .text-item.input:focus {
+        border: 2px solid #8ab9cf;
+        outline: none;
     }
 
     .button-item {
         grid-column: 2/2;
-    }
-    
-    .done {
-        color: grey;
-        text-decoration: line-through;
+        padding: 10px;
+        text-align: right;
+        margin: auto;
     }
 
     .button {
@@ -69,7 +65,6 @@
         text-align: center;
         text-decoration: none;
         font-size: 16px;
-        float: right;
     }
 
     .button:hover {
@@ -82,16 +77,20 @@
         box-shadow: 0 5px #666;
         transform: translateY(4px);
     }
+
 </style>
 
 <template>
-    <div class="todo">
+    <div class="form">
         <div class="grid-container">
-            <div class="text-item" :class="{ done: todo.done }">
-                {{ todo.text }}
+            <div class="text-item">
+                <h3 class="h3">Add a thing to do:</h3>
+            </div>
+            <div class="text-item">
+                <input class="text-item input" v-model="todo" placeholder="What to do?" />
             </div>
             <div class="button-item">
-                <button class="button" @click="toggle">{{ button.text }}</button>
+                <button class="button">Create</button>
             </div>
         </div>
     </div>
