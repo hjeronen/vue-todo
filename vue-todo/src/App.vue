@@ -23,6 +23,16 @@
                 if (foundTodo) {
                     foundTodo.done = !foundTodo.done;
                 }
+            },
+            addTodo(newTodo) {
+                if (newTodo) {
+                    const todo = {
+                        id: this.todos[this.todos.length - 1].id + 1,
+                        text: newTodo,
+                        done: false
+                    }
+                    this.todos.push(todo)
+                }
             }
         }
 	}
@@ -98,7 +108,7 @@
 			<TodoList :todos="todos" @toggle-done="toggleDone"/>
 		</div>
 		<div>
-			<TodoForm />
+			<TodoForm @add-todo="addTodo"/>
 		</div>
 		<div class='footer'>
 			<h3 class="h3">Things to do.</h3>

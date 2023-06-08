@@ -6,6 +6,11 @@
             return {
                 todo: todo
             }
+        },
+        methods: {
+            addTodo() {
+                this.$emit('add-todo', this.todo);
+            }
         }
     }
 </script>
@@ -90,7 +95,7 @@
                 <input class="text-item input" v-model="todo" placeholder="What to do?" />
             </div>
             <div class="button-item">
-                <button class="button">Create</button>
+                <button class="button" @click="addTodo">Create</button>
             </div>
         </div>
     </div>
