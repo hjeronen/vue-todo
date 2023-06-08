@@ -9,7 +9,8 @@
         },
         methods: {
             addTodo() {
-                this.$emit('add-todo', this.todo);
+                this.$emit('add-todo', this.todo)
+                this.todo = ''
             }
         }
     }

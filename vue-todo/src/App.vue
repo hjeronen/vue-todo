@@ -19,9 +19,9 @@
         },
         methods: {
             toggleDone(updatedTodo) {
-                const foundTodo = this.todos.find(todo => todo.id === updatedTodo.id);
+                const foundTodo = this.todos.find(todo => todo.id === updatedTodo.id)
                 if (foundTodo) {
-                    foundTodo.done = !foundTodo.done;
+                    foundTodo.done = !foundTodo.done
                 }
             },
             addTodo(newTodo) {
@@ -33,6 +33,12 @@
                     }
                     this.todos.push(todo)
                 }
+            },
+            deleteTodo(deletedTodo) {
+                const foundTodo = this.todos.find(todo => todo.id === deletedTodo.id)
+                if (foundTodo) {
+                    this.todos = this.todos.filter(todo => todo.id != foundTodo.id)
+                }
             }
         }
 	}
@@ -42,6 +48,7 @@
 	* {
 		box-sizing: border-box;
 		font-family: Arial, Helvetica, sans-serif;
+        overflow-wrap: break-word;
 	}
 
 	body {
@@ -105,7 +112,7 @@
 			<TodoHeader />
 		</div>
 		<div class='content'>
-			<TodoList :todos="todos" @toggle-done="toggleDone"/>
+			<TodoList :todos="todos" @toggle-done="toggleDone" @delete-todo="deleteTodo"/>
 		</div>
 		<div>
 			<TodoForm @add-todo="addTodo"/>

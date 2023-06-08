@@ -9,19 +9,23 @@
         },
         methods: {
             toggleDone() {
-                this.$emit('toggle-done', this.todo);
+                this.$emit('toggle-done', this.todo)
+            },
+            deleteTodo() {
+                this.$emit('delete-todo', this.todo)
             }
         }
     }
 </script>
 
-<style>
+<style scoped>
     .todo {
         background-color: #f7f9fa;
         color: black;
         border-radius: 25px;
         border: 2px solid #526d7a;
-        width: 90%;
+        width: 100%;
+        margin: 10px;
     }
 
     .todo:hover {
@@ -30,20 +34,23 @@
 
     .grid-container {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 350px auto auto;
         padding: 10px;
         grid-gap: 10px;
         align-items: center;
     }
 
     .text-item {
-        grid-column: 1/2;
         padding: 10px;
         justify-content: left;
     }
 
     .button-item {
-        grid-column: 2/2;
+        justify-content: center;
+    }
+
+    .delete-button-item {
+        justify-content: center;
     }
     
     .done {
@@ -56,11 +63,15 @@
         border: none;
         border-radius: 25px;
         color: white;
-        padding: 15px 32px;
+        padding: 10px 20px;
         text-align: center;
         text-decoration: none;
         font-size: 16px;
         float: right;
+    }
+
+    .button.delete {
+        background-color: #d13426;
     }
 
     .button:hover {
@@ -68,10 +79,18 @@
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     }
 
+    .button.delete:hover {
+        background-color: #f23b29;
+    }
+
     .button:active {
         background-color: #00688a;
         box-shadow: 0 5px #666;
         transform: translateY(4px);
+    }
+
+    .button.delete:active {
+        background-color: #781f16;
     }
 </style>
 
@@ -82,7 +101,10 @@
                 {{ todo.text }}
             </div>
             <div class="button-item">
-                <button class="button" @click="toggleDone">{{ todo.done ? 'Undo' : 'Mark Done' }}</button>
+                <button class="button" @click="toggleDone">{{ todo.done ? 'Undo' : 'Done' }}</button>
+            </div>
+            <div class="delete-button-item">
+                <button class="button delete" @click="deleteTodo">Delete</button>
             </div>
         </div>
     </div>

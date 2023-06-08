@@ -12,7 +12,10 @@
         },
         methods: {
             handleToggleDone(updatedTodo) {
-                this.$emit('toggle-done', updatedTodo);
+                this.$emit('toggle-done', updatedTodo)
+            },
+            handleDeleteTodo(deletedTodo) {
+                this.$emit('delete-todo', deletedTodo)
             }
         }
     }
@@ -32,6 +35,7 @@
                 :key="todo.id"
                 :todo="todo"
                 @toggle-done="handleToggleDone"
+                @delete-todo="handleDeleteTodo"
             />
         </ul>
     </div>
