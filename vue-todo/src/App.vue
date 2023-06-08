@@ -4,11 +4,27 @@
 	import TodoForm from './TodoForm.vue'
 
 	export default {
-	components: {
-		TodoHeader,
-		TodoList,
-		TodoForm
-	}
+        components: {
+            TodoHeader,
+            TodoList,
+            TodoForm
+        },
+        data() {
+            return {
+                todos: [
+                    { id: 1, text: 'Todo 1', done: false },
+                    { id: 2, text: 'Todo 2', done: false }
+                ]
+            }
+        },
+        methods: {
+            toggleDone(updatedTodo) {
+                const foundTodo = this.todos.find(todo => todo.id === updatedTodo.id);
+                if (foundTodo) {
+                    foundTodo.done = !foundTodo.done;
+                }
+            }
+        }
 	}
 </script>
 
@@ -79,7 +95,7 @@
 			<TodoHeader />
 		</div>
 		<div class='content'>
-			<TodoList />
+			<TodoList :todos="todos" @toggle-done="toggleDone"/>
 		</div>
 		<div>
 			<TodoForm />

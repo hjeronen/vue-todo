@@ -3,6 +3,17 @@
     export default {
         components: {
             TodoItem
+        },
+        props: {
+            todos: {
+                type: Array,
+                required: true
+            }
+        },
+        methods: {
+            handleToggleDone(updatedTodo) {
+                this.$emit('toggle-done', updatedTodo);
+            }
         }
     }
 </script>
@@ -15,6 +26,13 @@
 
 <template>
     <div class='list'>
-        <TodoItem />
+        <ul>
+            <TodoItem
+                v-for="todo in todos"
+                :key="todo.id"
+                :todo="todo"
+                @toggle-done="handleToggleDone"
+            />
+        </ul>
     </div>
 </template>

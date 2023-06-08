@@ -1,24 +1,15 @@
 <script>
-    let todo = {
-        text: 'Create a Todo-app.',
-        done: false
-    }
-
-    let button = {
-        text: 'Done'
-    }
 
     export default {
-        data() {
-            return {
-                todo: todo,
-                button: button
+        props: {
+            todo: {
+                type: Object,
+                required: true
             }
         },
         methods: {
-            toggle() {
-                this.todo.done = !todo.done
-                this.button.text = todo.done ? 'Undone' : 'Done'
+            toggleDone() {
+                this.$emit('toggle-done', this.todo);
             }
         }
     }
@@ -91,7 +82,7 @@
                 {{ todo.text }}
             </div>
             <div class="button-item">
-                <button class="button" @click="toggle">{{ button.text }}</button>
+                <button class="button" @click="toggleDone">{{ todo.done ? 'Undo' : 'Mark Done' }}</button>
             </div>
         </div>
     </div>
