@@ -17,7 +17,15 @@
                 ]
             }
         },
+		mounted () {
+			window.ipcRenderer.receive('ping', (event) => {
+				console.log(event)
+			})
+		},
         methods: {
+			ping() {
+				window.ipcRenderer.send('ping')
+			},
             toggleDone(updatedTodo) {
                 const foundTodo = this.todos.find(todo => todo.id === updatedTodo.id)
                 if (foundTodo) {
@@ -119,6 +127,7 @@
 		</div>
 		<div class='footer'>
 			<h3 class="h3">Things to do.</h3>
+			<button @click="ping">Ping</button>
 		</div>
 	</body>
 </template>

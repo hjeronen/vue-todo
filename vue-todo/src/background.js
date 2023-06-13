@@ -1,9 +1,11 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
+const path = require('path')
+
 
 require('@electron/remote/main').initialize()
 
@@ -23,7 +25,12 @@ async function createWindow() {
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
-      enableRemoteModule: true
+      enableRemoteModule: true,
+
+      // nodeIntegration: false,
+      // contextIsolation: true,
+      // enableRemoteModule: false,
+      preload: path.join(__dirname, 'preload.js'),
     }
   })
 
@@ -65,6 +72,14 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
+
+  // ipcMain.handle('ping', () => 'pong')
+  ipcMain.on('ping', (event, data) => {
+    console.log('Received ping.')
+    const response = 'pong'
+    event.sender.send('ping', response)
+  })
+
   createWindow()
 })
 
